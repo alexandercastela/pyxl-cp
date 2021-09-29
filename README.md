@@ -1,2 +1,2 @@
 # pyxl-cp
-Python program that works with excel to copy and paste data from one workbook to another. 
+A continuation of a project that was developed as a way to automate copying and pasting data from one excel workbook to another for financial analysis.
