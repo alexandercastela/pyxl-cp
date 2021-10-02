@@ -39,7 +39,7 @@ from openpyxl.utils.exceptions import InvalidFileException
  
 m = tk.Tk()
     #SETS WIDGET WINDOW SIZE WxH
-m.geometry('750x500')
+m.geometry("")
 m.title('Copy and Paste Widget')
 
 """ENTRIES FOR USER INPUT""" #09092021 - changed variable names & updated comments
@@ -110,6 +110,20 @@ def getSheetNames(a):
     print("first file", file1.sheetnames)
     # return file1.sheetnames
 
+def getSheetNames2(b):
+    print("file 2", b)
+    file2 = xl.load_workbook(b)
+    # getSheetNames2.test = file2
+    filelist2 = tk.StringVar(value=file2.sheetnames)
+    listbox2 = tk.Listbox(
+        m, 
+        listvariable=filelist2,
+        height=6,
+        selectmode=SINGLE
+    )
+    listbox2.grid(row=2, column=5)
+    d=listbox2.curselection()
+    print(d)
 # print("printing outside function", getSheetNames())
 
 #     #try:
@@ -156,14 +170,11 @@ def getSheetNames(a):
 #    except OSError as e:
 #        print("GOT AN OSERROR -_-: " + repr(e))
 
-def getSheetNames2(b):
-    print("file 2", b)
-    file2 = xl.load_workbook(b)
-    getSheetNames2.test = file2
+
     # return file2
     # print("second file", file2.sheetnames)        
 # getSheetNames2()
-print("printing from outside function", getSheetNames2.test)
+# print("printing from outside function", getSheetNames2.test)
 def testPrint(str, c):
     print("printing from testing function", c)
 
@@ -182,6 +193,7 @@ def openFile():
     # print(os.path.basename(open_file))
     tk.Label(m, text=os.path.basename(open_file)).grid(row=1, column=1)
     getSheetNames(open_file)
+
 def openFile2():
     open_file2 = filedialog.askopenfilename(title="Select file", filetypes=(("Execel files", ".xlsx .xls"),))
     # print(os.path.basename(open_file2))
@@ -189,9 +201,9 @@ def openFile2():
     getSheetNames2(open_file2)
 """LABELS""" #09092021 - updated comments
 tk.Label(m, text="Choose file to copy data from:").grid(row=0) #workbookcopy, prev e1
-tk.Label(m, text="Choose file to copy data from:" ).grid(row=0, column=4) #workbookpaste, e3
-tk.Button(m, text='Choose File', command=openFile).grid(row=0, column=1)
-tk.Button(m, text='Choose File', command=openFile2).grid(row=0, column=5)
+tk.Label(m, text="Choose file to paste data to:" ).grid(row=0, column=4) #workbookpaste, e3
+tk.Button(m, text='Open File', command=openFile).grid(row=0, column=1)
+tk.Button(m, text='Open File', command=openFile2).grid(row=0, column=5)
 """BUTTONS"""
 tk.Button(m, text='Clear', command = clearText).grid(row=8, column=0)
 tk.Button(m, text='Run', command = copyPaste).grid(row=8, column=1)
