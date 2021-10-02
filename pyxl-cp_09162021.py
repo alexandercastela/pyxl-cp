@@ -103,7 +103,7 @@ def getSheetNames(a):
         height=6,
         selectmode=SINGLE
     )
-    listbox1.grid(row=2, column=1)
+    listbox1.grid(row=3)
     d=listbox1.curselection()
     print(d)
     # testPrint(d)
@@ -121,7 +121,7 @@ def getSheetNames2(b):
         height=6,
         selectmode=SINGLE
     )
-    listbox2.grid(row=2, column=5)
+    listbox2.grid(row=3, column=3)
     d=listbox2.curselection()
     print(d)
 # print("printing outside function", getSheetNames())
@@ -191,19 +191,19 @@ def testPrint(str, c):
 def openFile():
     open_file = filedialog.askopenfilename(title="Select file", filetypes=(("Execel files", ".xlsx .xls"),))
     # print(os.path.basename(open_file))
-    tk.Label(m, text=os.path.basename(open_file)).grid(row=1, column=1)
+    tk.Label(m, text=os.path.basename(open_file)).grid(row=2)
     getSheetNames(open_file)
 
 def openFile2():
     open_file2 = filedialog.askopenfilename(title="Select file", filetypes=(("Execel files", ".xlsx .xls"),))
     # print(os.path.basename(open_file2))
-    tk.Label(m, text=os.path.basename(open_file2)).grid(row=1, column=5)
+    tk.Label(m, text=os.path.basename(open_file2)).grid(row=2, column=3)
     getSheetNames2(open_file2)
 """LABELS""" #09092021 - updated comments
 tk.Label(m, text="Choose file to copy data from:").grid(row=0) #workbookcopy, prev e1
-tk.Label(m, text="Choose file to paste data to:" ).grid(row=0, column=4) #workbookpaste, e3
-tk.Button(m, text='Open File', command=openFile).grid(row=0, column=1)
-tk.Button(m, text='Open File', command=openFile2).grid(row=0, column=5)
+tk.Label(m, text="Choose file to paste data to:" ).grid(row=0, column=3) #workbookpaste, e3
+tk.Button(m, text='Open File', command=openFile).grid(row=1)
+tk.Button(m, text='Open File', command=openFile2).grid(row=1, column=3)
 """BUTTONS"""
 tk.Button(m, text='Clear', command = clearText).grid(row=8, column=0)
 tk.Button(m, text='Run', command = copyPaste).grid(row=8, column=1)
