@@ -96,7 +96,22 @@ def endScript():
 def getSheetNames(a):
     print("file1", a)
     file1 = xl.load_workbook(a)
+    filelist1 = tk.StringVar(value=file1.sheetnames)
+    listbox1 = tk.Listbox(
+        m, 
+        listvariable=filelist1,
+        height=6,
+        selectmode=SINGLE
+    )
+    listbox1.grid(row=2, column=1)
+    d=listbox1.curselection()
+    print(d)
+    # testPrint(d)
     print("first file", file1.sheetnames)
+    # return file1.sheetnames
+
+# print("printing outside function", getSheetNames())
+
 #     #try:
 # #        raise OSError('Testing raising an OSError')
 #         # if var1.get() == 1:
@@ -144,9 +159,15 @@ def getSheetNames(a):
 def getSheetNames2(b):
     print("file 2", b)
     file2 = xl.load_workbook(b)
-    print("second file", file2.sheetnames)        
-       
-#FUNCTION TO CREATE A NEW SHEET IN AN ALREADY EXISTING EXCEL FILE (1/13/20)
+    getSheetNames2.test = file2
+    # return file2
+    # print("second file", file2.sheetnames)        
+# getSheetNames2()
+print("printing from outside function", getSheetNames2.test)
+def testPrint(str, c):
+    print("printing from testing function", c)
+
+#FUNC1TION TO CREATE A NEW SHEET IN AN ALREADY EXISTING EXCEL FILE (1/13/20)
 #def newSheet():
 #    print("gonna save as a new sheet")
     #book.creat_sheet()
@@ -174,6 +195,7 @@ tk.Button(m, text='Choose File', command=openFile2).grid(row=0, column=5)
 """BUTTONS"""
 tk.Button(m, text='Clear', command = clearText).grid(row=8, column=0)
 tk.Button(m, text='Run', command = copyPaste).grid(row=8, column=1)
+tk.Button(m, text="Test Print", command=testPrint).grid(row=8, column=3)
 #tk.Button(m, text='Run', command = showSheetNames).grid(row=8, column=2)
 #tk.Button(m, text='Show Input', command = printInput).grid(row=8, column=0)
 tk.Button(m, text='Quit', command = endScript).grid(row=8, column=2)
