@@ -25,11 +25,13 @@ How it works:
 import pandas as pd 
 from openpyxl import load_workbook #NEED THIS MODULE IN ORDER TO COPY NEW DATA WITHOUT DELETING PREVIOUS DATA
 import openpyxl as xl
+from tkinter import *
 import tkinter as tk
-#from tkinter import messagebox
+from tkinter.messagebox import *
 import os
 import sys
-from tkinter import *
+
+
 
 #For handling a "module" exception
 from openpyxl.utils.exceptions import InvalidFileException
@@ -43,23 +45,25 @@ m.title('Copy and Paste Widget')
 
 """FUNCTION TO PRINT USER INPUT"""
 def copyPaste():
-    pasteto = e2.get() #FILE TO PASTE DATA TO
-    copyfrom = e1.get() #FILE TO COPY DATA FROM
-    copydata = pd.read_excel(copyfrom, sheet_name= e5.get()) 
-    book = load_workbook(pasteto)
-    writer = pd.ExcelWriter(pasteto, engine = 'openpyxl') 
-    writer.book = book
-    writer.sheets = {ws.title: ws for ws in book.worksheets} 
-    sheetname = e6.get() #GETS THE NAME OF THE SHEET TO PASTE TO
-    copydata.to_excel(writer, sheet_name = sheetname,
-                      startrow = writer.sheets[sheetname].max_row, index = False, header = False, ) 
-#    if var.get() == 1:
-#        print("Check button value: %s" % var.get())
-    book.creat_sheet('New Sheet', 0)
-    writer.save() #SAVES FILE
-    #writer.saveAs("New File")
+#     pasteto = e2.get() #FILE TO PASTE DATA TO
+#     copyfrom = e1.get() #FILE TO COPY DATA FROM
+#     copydata = pd.read_excel(copyfrom, sheet_name= e5.get()) 
+#     book = load_workbook(pasteto)
+#     writer = pd.ExcelWriter(pasteto, engine = 'openpyxl') 
+#     writer.book = book
+#     writer.sheets = {ws.title: ws for ws in book.worksheets} 
+#     sheetname = e6.get() #GETS THE NAME OF THE SHEET TO PASTE TO
+#     copydata.to_excel(writer, sheet_name = sheetname,
+#                       startrow = writer.sheets[sheetname].max_row, index = False, header = False, ) 
+# #    if var.get() == 1:
+# #        print("Check button value: %s" % var.get())
+#     book.creat_sheet('New Sheet', 0)
+#     writer.save() #SAVES FILE
+#     #writer.saveAs("New File")
     print("SCRIPT IS DONE RUNNING") #MESSAGE IS PRINTED TO THE IPYTHON CONSOLE
     #os.system(pasteto)
+
+#list sheetnames for user selection
 
 """FUNCTION TO CLEAR USER INPUT WHEN "Clear" BUTTON IS PUSHED"""
 def clearText():
@@ -71,7 +75,7 @@ def clearText():
 
 """FUNCTION TO END THE PROGRAM WHEN "Quit" BUTTON IS PUSHED"""
 def endScript():
-    result = messagebox.askyesno("Quit Prompt", "Are you sure you want to end the script?")
+    result = askyesno("Quit Prompt", "Are you sure you want to end the script?")
     if result == True:
         print("script has ended")
         m.destroy()
@@ -147,8 +151,8 @@ e2.grid(row=0, column=3)
 e6=tk.Entry(m)
 e6.grid(row=1, column=3)
 
-try:
-    from exception import myexception
-except Exception as e:
-    print 
+# try:
+#     from exception import myexception
+# except Exception as e:
+#     print 
 m.mainloop()
