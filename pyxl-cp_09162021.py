@@ -101,7 +101,8 @@ def getSheetNames(a):
         m, 
         listvariable=filelist1,
         height=6,
-        selectmode=SINGLE
+        selectmode=SINGLE,
+        exportselection=False
     )
     listbox1.grid(row=3)
     d=listbox1.curselection()
@@ -119,7 +120,8 @@ def getSheetNames2(b):
         m, 
         listvariable=filelist2,
         height=6,
-        selectmode=SINGLE
+        selectmode=SINGLE,
+        exportselection=False
     )
     listbox2.grid(row=3, column=3)
     d=listbox2.curselection()
