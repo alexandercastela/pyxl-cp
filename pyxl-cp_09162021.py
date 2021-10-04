@@ -40,7 +40,7 @@ from openpyxl.utils.exceptions import InvalidFileException
 m = tk.Tk()
     #SETS WIDGET WINDOW SIZE WxH
 m.geometry("")
-m.title('Copy and Paste Widget')
+m.title('PYXL-CP')
 
 """ENTRIES FOR USER INPUT""" #09092021 - changed variable names & updated comments
 #COPYING FROM FILE LOCATION-GETS INPUT
