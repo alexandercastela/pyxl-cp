@@ -106,8 +106,7 @@ def getSheetNames(a):
     )
     listbox1.grid(row=3)
     d=listbox1.curselection()
-    print(d)
-    # testPrint(d)
+    print("printing file 1 curselection", d)
     print("first file", file1.sheetnames)
     # return file1.sheetnames
 
@@ -125,7 +124,8 @@ def getSheetNames2(b):
     )
     listbox2.grid(row=3, column=3)
     d=listbox2.curselection()
-    print(d)
+    print("printing file 2 curselection", d)
+    # testPrint(d)
 # print("printing outside function", getSheetNames())
 
 #     #try:
@@ -175,10 +175,8 @@ def getSheetNames2(b):
 
     # return file2
     # print("second file", file2.sheetnames)        
-# getSheetNames2()
-# print("printing from outside function", getSheetNames2.test)
-def testPrint(str, c):
-    print("printing from testing function", c)
+
+
 
 #FUNC1TION TO CREATE A NEW SHEET IN AN ALREADY EXISTING EXCEL FILE (1/13/20)
 #def newSheet():
@@ -196,6 +194,10 @@ def openFile():
     tk.Label(m, text=os.path.basename(open_file)).grid(row=2)
     getSheetNames(open_file)
 
+getSheetNames()
+m = getSheetNames()
+print("printing outside sheet name function",m.file1.sheetnames())
+
 def openFile2():
     open_file2 = filedialog.askopenfilename(title="Select file", filetypes=(("Execel files", ".xlsx .xls"),))
     # print(os.path.basename(open_file2))
@@ -209,7 +211,7 @@ tk.Button(m, text='Open File', command=openFile2).grid(row=1, column=3)
 """BUTTONS"""
 tk.Button(m, text='Clear', command = clearText).grid(row=8, column=0)
 tk.Button(m, text='Run', command = copyPaste).grid(row=8, column=1)
-tk.Button(m, text="Test Print", command=testPrint).grid(row=8, column=3)
+# tk.Button(m, text="Test Print", command=testPrint).grid(row=8, column=3)
 #tk.Button(m, text='Run', command = showSheetNames).grid(row=8, column=2)
 #tk.Button(m, text='Show Input', command = printInput).grid(row=8, column=0)
 tk.Button(m, text='Quit', command = endScript).grid(row=8, column=2)
