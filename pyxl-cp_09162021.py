@@ -91,24 +91,50 @@ def endScript():
     if result == True:
         print("script has ended")
         m.destroy()
-
+def openFile():
+    open_file = filedialog.askopenfilename(title="Select file", filetypes=(("Execel files", ".xlsx .xls"),))
+    # print(os.path.basename(open_file))
+    tk.Label(m, text=os.path.basename(open_file)).grid(row=2)
+    getSheetNames(open_file)
+# class testClass:
 """Function to show the list of sheetnames within each file"""
 def getSheetNames(a):
     print("file1", a)
     file1 = xl.load_workbook(a)
     filelist1 = tk.StringVar(value=file1.sheetnames)
-    listbox1 = tk.Listbox(
-        m, 
-        listvariable=filelist1,
-        height=6,
-        selectmode=SINGLE,
-        exportselection=False
-    )
-    listbox1.grid(row=3)
-    d=listbox1.curselection()
-    print("printing file 1 curselection", d)
-    print("first file", file1.sheetnames)
-    # return file1.sheetnames
+    # listbox1 = tk.Listbox(
+    #     m, 
+    #     listvariable=filelist1,
+    #     height=6,
+    #     selectmode=SINGLE,
+    #     exportselection=False
+    # )
+    # listbox1.grid(row=3)
+    # d=listbox1.curselection()
+    # print("printing file 1 curselection", d)
+    # print("first file", file1.sheetnames)
+    # g = file1.sheetnames
+    return filelist1
+
+getSheetNames()
+g = getSheetNames()
+listbox1 = tk.Listbox(
+    m, 
+    listvariable=g,
+    height=6,
+    selectmode=SINGLE,
+    exportselection=False
+)
+listbox1.grid(row=3)
+d=listbox1.curselection()
+print(d, "moved outside of function")
+
+
+
+getSheetNames(a)
+k = getSheetNames(a)
+print(k, "another test >_<")
+# print(k, "from outside function")
 
 def getSheetNames2(b):
     print("file 2", b)
@@ -188,25 +214,24 @@ def getSheetNames2(b):
 #tk.Checkbutton(m, text = "Yes", variable = var, onvalue =1, command = copyPaste).grid(row = 7, column =1)
 #print("Check button value: %s" % var.get())
 
-def openFile():
-    open_file = filedialog.askopenfilename(title="Select file", filetypes=(("Execel files", ".xlsx .xls"),))
-    # print(os.path.basename(open_file))
-    tk.Label(m, text=os.path.basename(open_file)).grid(row=2)
-    getSheetNames(open_file)
+# def openFile():
+#     open_file = filedialog.askopenfilename(title="Select file", filetypes=(("Execel files", ".xlsx .xls"),))
+#     # print(os.path.basename(open_file))
+#     tk.Label(m, text=os.path.basename(open_file)).grid(row=2)
+#     getSheetNames(open_file)
 
-getSheetNames()
-m = getSheetNames()
-print("printing outside sheet name function",m.file1.sheetnames())
+
 
 def openFile2():
     open_file2 = filedialog.askopenfilename(title="Select file", filetypes=(("Execel files", ".xlsx .xls"),))
     # print(os.path.basename(open_file2))
     tk.Label(m, text=os.path.basename(open_file2)).grid(row=2, column=3)
     getSheetNames2(open_file2)
+
 """LABELS""" #09092021 - updated comments
 tk.Label(m, text="Choose file to copy data from:").grid(row=0) #workbookcopy, prev e1
 tk.Label(m, text="Choose file to paste data to:" ).grid(row=0, column=3) #workbookpaste, e3
-tk.Button(m, text='Open File', command=openFile).grid(row=1)
+tk.Button(m, text='Open File', command=testClass.openFile).grid(row=1)
 tk.Button(m, text='Open File', command=openFile2).grid(row=1, column=3)
 """BUTTONS"""
 tk.Button(m, text='Clear', command = clearText).grid(row=8, column=0)
